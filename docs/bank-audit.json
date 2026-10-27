@@ -1,0 +1,279 @@
+{
+  "total": 1000,
+  "reviewedInternal": 1000,
+  "expertReviewed": 0,
+  "pending": 0,
+  "past": 0,
+  "reconstructed": 0,
+  "original": 1000,
+  "concepts": 300,
+  "numericVariants": 700,
+  "numericTemplates": 14,
+  "shortage": 0,
+  "exactNormalizedDuplicates": 0,
+  "topicCounts": {
+    "네일 개론": 160,
+    "피부·손발톱": 60,
+    "위생·안전": 160,
+    "화장품·재료": 460,
+    "네일 기술": 160
+  },
+  "variantCounts": {
+    "NAIL-CALC-soluteMass": 50,
+    "NAIL-CALC-massPercent": 50,
+    "NAIL-CALC-solventMass": 50,
+    "NAIL-CALC-dilutionStock": 50,
+    "NAIL-CALC-dilutionWater": 50,
+    "NAIL-CALC-dilutionFinal": 50,
+    "NAIL-CALC-mixturePercent": 50,
+    "NAIL-CALC-componentRatio": 50,
+    "NAIL-CALC-trayArea": 50,
+    "NAIL-CALC-containerVolume": 50,
+    "NAIL-CALC-completeUses": 50,
+    "NAIL-CALC-stageMinutes": 50,
+    "NAIL-CALC-inventoryBalance": 50,
+    "NAIL-CALC-materialCost": 50
+  },
+  "answerPositionCounts": {
+    "1": 250,
+    "4": 251,
+    "3": 250,
+    "2": 249
+  },
+  "dataSha256": "0c02e8c13629a144f1b499e6bb20f34679bc58076e77cb72d4b1ee18331de217",
+  "semanticReview": {
+    "method": "AI 원고·정답·보기·해설 내부 검토 및 문장 유사도 후보 검토. 수치 변형 family는 별도 집계. 모든 문항이 독립 개념이라는 뜻이 아님.",
+    "threshold": 0.72,
+    "candidates": [
+      {
+        "ids": [
+          "NAIL-026",
+          "NAIL-CON-049"
+        ],
+        "similarity": 0.7692,
+        "questions": [
+          "멸균에 대한 설명으로 옳은 것은?",
+          "손발톱 판에 관한 설명으로 옳은 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-049",
+          "NAIL-CON-069"
+        ],
+        "similarity": 0.75,
+        "questions": [
+          "손발톱 판에 관한 설명으로 옳은 것은?",
+          "손바닥과 발바닥 피부에 관한 설명으로 옳은 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-067",
+          "NAIL-CON-070"
+        ],
+        "similarity": 0.7407,
+        "questions": [
+          "피하 지방의 일반적 기능은?",
+          "피지의 일반적 역할은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-017",
+          "NAIL-CON-073"
+        ],
+        "similarity": 0.7826,
+        "questions": [
+          "유지 기간에 관한 설명으로 적절한 것은?",
+          "알레르기 감작에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-017",
+          "NAIL-CON-075"
+        ],
+        "similarity": 0.8095,
+        "questions": [
+          "유지 기간에 관한 설명으로 적절한 것은?",
+          "굳은살에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-073",
+          "NAIL-CON-075"
+        ],
+        "similarity": 0.7727,
+        "questions": [
+          "알레르기 감작에 관한 설명으로 적절한 것은?",
+          "굳은살에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-084",
+          "NAIL-CON-085"
+        ],
+        "similarity": 0.8182,
+        "questions": [
+          "힘줄의 주된 역할은?",
+          "인대의 주된 역할은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-070",
+          "NAIL-CON-148"
+        ],
+        "similarity": 0.7407,
+        "questions": [
+          "피지의 일반적 역할은?",
+          "에몰리언트의 일반적 역할은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-017",
+          "NAIL-CON-151"
+        ],
+        "similarity": 0.8182,
+        "questions": [
+          "유지 기간에 관한 설명으로 적절한 것은?",
+          "중화 반응에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-073",
+          "NAIL-CON-151"
+        ],
+        "similarity": 0.7826,
+        "questions": [
+          "알레르기 감작에 관한 설명으로 적절한 것은?",
+          "중화 반응에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-075",
+          "NAIL-CON-151"
+        ],
+        "similarity": 0.8095,
+        "questions": [
+          "굳은살에 관한 설명으로 적절한 것은?",
+          "중화 반응에 관한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-152",
+          "NAIL-CON-161"
+        ],
+        "similarity": 0.8125,
+        "questions": [
+          "용매의 역할로 적절한 것은?",
+          "광개시제의 역할로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-026",
+          "NAIL-CON-162"
+        ],
+        "similarity": 0.7568,
+        "questions": [
+          "멸균에 대한 설명으로 옳은 것은?",
+          "중합에 대한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-017",
+          "NAIL-CON-162"
+        ],
+        "similarity": 0.7805,
+        "questions": [
+          "유지 기간에 관한 설명으로 적절한 것은?",
+          "중합에 대한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-073",
+          "NAIL-CON-162"
+        ],
+        "similarity": 0.7442,
+        "questions": [
+          "알레르기 감작에 관한 설명으로 적절한 것은?",
+          "중합에 대한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-075",
+          "NAIL-CON-162"
+        ],
+        "similarity": 0.8205,
+        "questions": [
+          "굳은살에 관한 설명으로 적절한 것은?",
+          "중합에 대한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-151",
+          "NAIL-CON-162"
+        ],
+        "similarity": 0.8293,
+        "questions": [
+          "중화 반응에 관한 설명으로 적절한 것은?",
+          "중합에 대한 설명으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-152",
+          "NAIL-CON-181"
+        ],
+        "similarity": 0.7222,
+        "questions": [
+          "용매의 역할로 적절한 것은?",
+          "산화 방지 성분의 역할로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      },
+      {
+        "ids": [
+          "NAIL-CON-154",
+          "NAIL-CON-197"
+        ],
+        "similarity": 0.7568,
+        "questions": [
+          "현탁액의 특징으로 적절한 것은?",
+          "아몬드 형태의 특징으로 적절한 것은?"
+        ],
+        "disposition": "내부검토: 문장틀이 유사하지만 묻는 대상·정답이 달라 별도 문항으로 유지. 전문가 의미 검수는 아님."
+      }
+    ]
+  },
+  "externalSourceVerification": "미완료. 일반 지식 및 주어진 가상 수치의 산술. 공식 기출·제품 처방·법정 기준 아님."
+}
