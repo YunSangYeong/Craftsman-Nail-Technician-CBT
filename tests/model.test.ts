@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import {
   answerExam,
@@ -20,11 +21,11 @@ import {
 } from "../src/model";
 const bank = BASE_BANK;
 describe("네일 문제은행 품질", () => {
- it("60개 고유 문항이며 1,000개 목표와 구별한다", () => {
-  expect(bank).toHaveLength(60);
-  expect(new Set(bank.map(q=>q.id)).size).toBe(60);
-  expect(new Set(bank.map(fingerprint)).size).toBe(60);
-  expect(1000-bank.length).toBe(940);
+ it("중복 제거 후 기본 은행은 1,000개이다", () => {
+  expect(bank).toHaveLength(1000);
+  expect(new Set(bank.map(q=>q.id)).size).toBe(1000);
+  expect(new Set(bank.map(fingerprint)).size).toBe(1000);
+  expect(1000-bank.length).toBe(0);
  });
  it.each(bank)("$id 구조·출처·연도·보기 검증", q=>{
   expect(()=>validateQuestion(q)).not.toThrow();
@@ -32,12 +33,28 @@ describe("네일 문제은행 품질", () => {
   expect(q.verificationStatus).toBe("reviewed");
   expect(q.reviewNote).toContain("공식");
   expect(q.explanation.length).toBeGreaterThan(30);
-  expect(q.family).toBeUndefined(); expect(q.calculation).toBeUndefined();
+  expect(Boolean(q.family)).toBe(Boolean(q.calculation));
   expect(q.sourceUrl).toContain("Craftsman-Nail-Technician-CBT");
  });
- it("다섯 학습 영역 각 12개이며 공식 과목 할당을 주장하지 않는다", ()=>{
-  for(const topic of ["네일 개론","피부·손발톱","위생·안전","화장품·재료","네일 기술"])
-   expect(bank.filter(q=>q.topic===topic)).toHaveLength(12);
+ it("학습 영역·개념·수치 변형 수를 구별한다", ()=>{
+  const expected={"네일 개론":160,"피부·손발톱":60,"위생·안전":160,"화장품·재료":460,"네일 기술":160};
+  for(const [topic,count] of Object.entries(expected)) {
+   expect(bank.filter(q=>q.topic===topic)).toHaveLength(count);
+   expect(bank.filter(q=>q.topic===topic&&!q.family)).toHaveLength(60);
+  }
+  expect(bank.filter(q=>!q.family)).toHaveLength(300);
+  expect(bank.filter(q=>q.family)).toHaveLength(700);
+  const families=new Set(bank.filter(q=>q.family).map(q=>q.family));
+  expect(families.size).toBe(14);
+  for(const family of families) {
+   const variants=bank.filter(q=>q.family===family);
+   expect(variants).toHaveLength(50);
+   expect(new Set(variants.map(q=>JSON.stringify(q.calculation!.values))).size).toBe(50);
+  }
+ });
+ it("기존 60개의 ID·본문·보기·정답·기록 참조를 보존한다",()=>{
+  const digest=createHash("sha256").update(JSON.stringify(bank.slice(0,60))).digest("hex");
+  expect(digest).toBe("a9c05c48a46794612fa2a1d6645f255cb07b6944049398241d53cddf76a46ca8");
  });
 });
 describe("모의시험 및 절대 시간", () => {
@@ -64,7 +81,7 @@ describe("모의시험 및 절대 시간", () => {
       expect(new Set(families).size).toBe(families.length);
     }
   });
-  it("수입 문항의 유형이 적어도이어도 문항 수가 충분하면 60문항 시험을 구성한다", () => {
+  it("수입 문항의 유형이 적어도 문항 수가 충분하면 60문항 시험을 구성한다", () => {
     const imported = bank.map((q) => ({ ...q, family: `only-${q.subject}` }));
     const exam = createExam(imported, "nail-main");
     expect(exam.questions).toHaveLength(60);
@@ -130,12 +147,12 @@ describe("랜덤 학습", () => {
   it("한 과목의 모든 문항을 순회하기 전에는 중복이 없다", () => {
     let p = startPractice(bank, "nail-main", "네일미용 통합");
     const ids = new Set<string>();
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < bank.length; i++) {
       expect(ids.has(p.currentId)).toBe(false);
       ids.add(p.currentId);
       p = nextPractice(p, bank);
     }
-    expect(ids.size).toBe(60);
+    expect(ids.size).toBe(1000);
     expect(p.subject).toBe("네일미용 통합");
   });
   it("즉시 채점·연속 정답·통계를 저장하며 중복 채점을 방지한다", () => {

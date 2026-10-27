@@ -42,6 +42,7 @@ import {
 import {
   answerExam,
   BASE_BANK,
+  BANK_STATS,
   checkPractice,
   createExam,
   emptyStore,
@@ -156,6 +157,7 @@ function Source({ q }: { q: Question }) {
   return (
     <div className="source">
       <span className="tag">{TYPE_LABEL[q.type]}</span>
+      {q.family && <span className="tag">수치 조건 변형</span>}
       <span>
         {q.year
           ? `${q.year}년 ${q.session ? `${q.session}회차` : ""}`
@@ -874,6 +876,7 @@ function App() {
                         .length
                     }
                   </p>
+                  <p>기본 은행: 개념·상황 {BANK_STATS.concepts} · 수치 변형 {BANK_STATS.numericVariants} ({BANK_STATS.numericFamilies}문형)</p>
                 </div>
                 <button
                   className="text-button"
@@ -1788,7 +1791,7 @@ function BankManager({
           </strong>
           <br />
           원문 기출 0 · 복원문제 0. 공식 자료 접근 제한으로 기출 원문 및
-          출제기준 대조는 완료하지 못했습니다. 기본 문항은 AI 일반 지식 기반 자체 제작으로 문장·보기·정답의 내부 검토만 수행했습니다. 외부 전문가 검수·공식 기준 대조는 미완료입니다. 학습용 잠정 규칙은 {QUALIFICATION.questionCount}문항·{QUALIFICATION.durationMinutes}분·{QUALIFICATION.choiceCount}지선다·{QUALIFICATION.passScore}점 합격·과락 없음이며 공식 과목 배분을 재현하지 않습니다. 목표 1,000문항 중 {BASE_BANK.length}문항 등록, {1000 - BASE_BANK.filter(q => q.verificationStatus === "reviewed").length}문항 부족입니다.
+          출제기준 대조는 완료하지 못했습니다. 기본 문항은 AI 일반 지식 기반 자체 제작으로 문장·보기·정답의 내부 검토만 수행했습니다. 외부 전문가 검수·공식 기준 대조는 미완료입니다. 학습용 잠정 규칙은 {QUALIFICATION.questionCount}문항·{QUALIFICATION.durationMinutes}분·{QUALIFICATION.choiceCount}지선다·{QUALIFICATION.passScore}점 합격·과락 없음이며 공식 과목 배분을 재현하지 않습니다. 목표 1,000문항 중 {BASE_BANK.length}문항 등록, {Math.max(0,1000 - BANK_STATS.reviewed)}문항 부족입니다. 개념·상황형 {BANK_STATS.concepts}문항, 수치 조건 변형 {BANK_STATS.numericVariants}문항({BANK_STATS.numericFamilies}개 계산 문형)입니다. 수치 변형은 독립 개념 수나 기출 수가 아니며 가상의 실습 계산입니다.
         </div>
       </div>
       <div className="bank-tools panel">

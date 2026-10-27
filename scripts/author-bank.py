@@ -70,5 +70,15 @@ for i,line in enumerate(manuscript.splitlines(),1):
  choices=[answer,*distractors]; offset=(i-1)%4; choices=choices[offset:]+choices[:offset]
  rows.append(dict(id=f'NAIL-{i:03}',subject='네일미용 통합',topic=topic,question=q,choices=choices,answer=choices.index(answer)+1,explanation=explanation,difficulty='하',year=None,session=None,type='original',sourceUrl='https://github.com/YunSangYeong/Craftsman-Nail-Technician-CBT/blob/main/docs/sources.md',verificationStatus='reviewed',reviewNote='AI 일반 지식 기반 자체 제작. 내부 문장·보기·정답 검토; 외부 전문가 검수·공식 출제기준 대조 미완료. 저장소 주소는 작성 위치이며 외부 정답 증빙이 아님.',version='nail-main',rights='자체 제작 학습 문항 · CC BY 4.0 · Craftsman-Nail-Technician-CBT contributors'))
 assert len(rows)==60
+from expand_bank import create_additions
+rows.extend(create_additions())
+assert len(rows)==1000
 root=Path(__file__).resolve().parents[1]
-(root/'src/data/questions-main.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+output=json.dumps(rows,ensure_ascii=False,indent=2)+'\n'
+import sys
+bank_path=root/'src/data/questions-main.json'
+if '--check' in sys.argv:
+ assert bank_path.read_text()==output, '기본 JSON과 원고 재생성 결과가 다릅니다.'
+ print('재생성 검증: 1,000문항 JSON 일치')
+else:
+ bank_path.write_text(output)

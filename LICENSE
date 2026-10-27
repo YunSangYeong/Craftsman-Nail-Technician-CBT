@@ -26,3 +26,7 @@ Licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 Attribute this repository and indicate changes. These are newly authored learning
 questions, not official past examination questions. No electrician question data
 is included. Third-party data retains its own rights.
+
+The corresponding authored manuscripts in scripts/manuscripts/ are also licensed
+under CC BY 4.0 with the same attribution. Generation and audit scripts are
+application source code under the MIT license above.

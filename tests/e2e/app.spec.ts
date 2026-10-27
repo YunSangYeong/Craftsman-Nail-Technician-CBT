@@ -32,7 +32,7 @@ test("학습 기준 선택 제거·모바일 화면·이전 선택 복원", asyn
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
-  await expect(page.locator(".bank-summary")).toContainText(/등록\s*60문항/);
+  await expect(page.locator(".bank-summary")).toContainText(/등록\s*1000문항/);
   await expect(page.getByLabel("학습 기준")).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText("학습 기준");
   await expect(page.locator("main")).not.toContainText("2027–2029");
@@ -197,7 +197,7 @@ test("JSON 등록·중복 제거·검수 대기·사용자 검수·CSV 등록·�
   await expectNoDefaultVersionYears(page);
   await expect(page.locator(".bank-filter")).toContainText("기본 문제은행");
   await expect(page.locator(".bank-row")).toHaveCount(20);
-  await expect(page.locator(".pagination")).toContainText("1 / 3");
+  await expect(page.locator(".pagination")).toContainText("1 / 50");
   await page.getByLabel("문항 검색", { exact: true }).fill("NAIL-060");
   await expect(page.locator(".bank-row")).toHaveCount(1);
   await page.locator(".bank-row summary").click();
@@ -454,7 +454,7 @@ test('상단 상시 안내 없음·문제은행 출처와 권리 공개·저장 
   await nav(page,label);
   await expect(page.locator('.criteria-note')).toHaveCount(0);
  }
- await expect(page.locator('main')).toContainText('940문항 부족');
+ await expect(page.locator('main')).toContainText('0문항 부족');
  await expect(page.locator('main')).toContainText('공식 기준 대조는 미완료');
  await page.locator('.bank-row summary').first().click();
  await expect(page.locator('.bank-row[open] .explanation')).toContainText('외부 전문가 검수');
@@ -463,4 +463,30 @@ test('상단 상시 안내 없음·문제은행 출처와 권리 공개·저장 
  });
  await page.reload();
  await expect(page.getByRole('alert')).toContainText('저장');
+});
+
+test('1,000문항 유형 공개·추가 개념과 계산 변형 검색·전체 내보내기', async ({page})=>{
+ await page.goto('');
+ await expect(page.locator('.bank-summary')).toContainText('등록 1000문항');
+ await expect(page.locator('.bank-summary')).toContainText('개념·상황 300');
+ await expect(page.locator('.bank-summary')).toContainText('수치 변형 700 (14문형)');
+ await nav(page,'문제은행 관리');
+ const search=page.getByLabel('문항 검색',{exact:true});
+ await search.fill('NAIL-CON-192');
+ await expect(page.locator('.bank-row')).toHaveCount(1);
+ await page.locator('.bank-row summary').click();
+ await expect(page.locator('.bank-row[open] .explanation')).toContainText('위험 정보');
+ await search.fill('NAIL-CALC-07-025');
+ await expect(page.locator('.bank-row')).toHaveCount(1);
+ await page.locator('.bank-row summary').click();
+ await expect(page.locator('.bank-row[open] .explanation')).toContainText('수치 조건 변형');
+ await expect(page.locator('.bank-row[open] .explanation')).toContainText('기출 출제 사실을 뜻하지 않는다');
+ const downloading=page.waitForEvent('download');
+ await page.getByRole('button',{name:'전체 문항 내보내기'}).click();
+ const download=await downloading;
+ const {readFile}=await import('node:fs/promises');
+ const contents=JSON.parse(await readFile((await download.path())!,'utf8'));
+ expect(contents).toHaveLength(1000);
+ expect(contents.filter((q:{family?:string})=>q.family)).toHaveLength(700);
+ expect(contents.every((q:{year:null;session:null;type:string})=>q.year===null&&q.session===null&&q.type==='original')).toBe(true);
 });
